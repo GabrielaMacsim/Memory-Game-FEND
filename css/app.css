@@ -36,6 +36,12 @@ body {
 h1 {
     font-family: 'Aclonica', sans-serif;
     font-weight: 300;
+    text-align: center;
+}
+
+header {
+  width: 40%;
+  background-color:;
 }
 
 /*
