@@ -209,6 +209,16 @@ window.onload = restartAll; // All functions to be reset when the page starts
 function matchCards(cardA, cardB) {
   cardA.classList.add('match');
   cardB.classList.add('match');
+  if (allMatchedCards.length == 16) {
+  setTimeout(function() {
+    let timeSpent = $(".timer").text();
+    let nrOfMoves = $(".moves").text();
+    $('#myModal').modal('show');
+    $('#modal-time').text("Time elapsed: " + timeSpent);
+    $('#modal-moves').text("Number of moves: " + nrOfMoves);
+    clearInterval(timeInterval);
+  }, 1000)
+ }
 }
 
 /*
