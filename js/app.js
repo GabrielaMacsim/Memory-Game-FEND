@@ -1,3 +1,10 @@
+
+/*
+ * Variables
+ */
+
+const activeCards = [];
+
 /*
  * A list that holds all cards
  */
