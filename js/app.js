@@ -5,6 +5,7 @@
 
 const activeCards = [];
 const cards = document.querySelectorAll('.deck li');
+var firstClick = true;
 
 /*
  * A list that holds all cards
@@ -28,4 +29,60 @@ function shuffle(array) {
     }
 
     return array;
+}
+
+/*
+ * Display the cards on the page
+*/
+
+function showCard (card) {
+  card.classList.add('open', 'show');
+}
+
+function isAlreadyMatched(card) {
+  return card.classList.contains('show');
+}
+
+/*
+ * Check if the clicked card matches an other card
+*/
+
+function checkClickedCard (event) {
+  // display the card's symbol
+  let clickedCard = event.target;
+
+  // check if the target is the icon, in which case use the parseInt
+  if (clickedCard.tagName == "I") {
+    clickedCard = clickedCard.parentElement;
+  }
+
+  // check if this is the first click of the game
+  if (firstClick) {
+    // we're in the first click, so set this to false
+    firstClick = false;
+  }
+  // if card is already matched, do nothing
+  if  (isAlreadyMatched (clickedCard)) {
+    return;
+  }
+
+  showCard(clickedCard);
+  if ( activeCards.length === 0 ) { // if there is no other unmatched active card
+    activeCards.push(clickedCard);
+  } else { // if there is one unmatched active card
+    otherActiveCard = activeCards.pop();
+    otherActiveCardImageClass = otherActiveCard.children[0].classList;
+    clickedCardImageClass = clickedCard.children[0].classList;
+
+    if (otherActiveCardImageClass.toString() ===    clickedCardImageClass.toString()) {
+      matchCards(otherActiveCard, clickedCard);
+    } else {
+      hideCards(otherActiveCard, clickedCard);
+    }
+  }
+}
+
+for ( let i = 0; i < cards.length; i++) {
+  let card = cards[i];
+  card.addEventListener('click', checkClickedCard);
 }
