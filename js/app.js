@@ -73,6 +73,24 @@ function resetTimer() {
 }
 
 /*
+ * Counter of clicked unopened cards during the game
+*/
+
+function getCurrentNrOfMoves() {
+  return Number.parseInt($(".moves").text());
+}
+
+function increaseNrOfMoves() {
+  let currentNumber = getCurrentNrOfMoves();
+  currentNumber = currentNumber + 1;
+  $(".moves").text(currentNumber);
+}
+
+function resetNrOfMoves() {
+  $(".moves").text("0");
+}
+
+/*
  * Check if the clicked card matches an other card
 */
 
@@ -96,6 +114,8 @@ function checkClickedCard (event) {
   if  (isAlreadyMatched (clickedCard)) {
     return;
   }
+  //count the number of clicks on unopened cards
+  increaseNrOfMoves();
 
   showCard(clickedCard);
   if (activeCards.length === 0) { // if there is no other unmatched active card
@@ -130,6 +150,7 @@ function matchCards(cardA, cardB) {
 /*
  * Function that gives the clicked unmatched cards the class of wrong that changes them to red
 */
+
 function hideCards(cardA, cardB) {
   cardA.classList.add('wrong');
   cardB.classList.add('wrong');
