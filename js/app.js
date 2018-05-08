@@ -91,6 +91,29 @@ function resetNrOfMoves() {
 }
 
 /*
+ * Change stars according to number of moves
+*/
+
+function refreshNrOfStars() {
+  let currentNumber = getCurrentNrOfMoves();
+  starsList = $("ul.item1.stars > li > i");
+  if (currentNumber == 18) {
+      starsList[2].classList.replace("fa-star", "fa-star-o");
+    } else if (currentNumber == 30)  {
+        starsList[1].classList.replace("fa-star", "fa-star-o");
+    } else if (currentNumber == 42)  {
+        starsList[0].classList.replace("fa-star", "fa-star-o");
+    }
+}
+
+function redrawStars() {
+  let starsList = $("ul.item1.stars > li > i");
+  for (let i = 0; i < starsList.length; i++) {
+    let star = starsList[i];
+    star.classList.replace("fa-star-o", "fa-star");
+  }
+}
+/*
  * Check if the clicked card matches an other card
 */
 
@@ -117,6 +140,9 @@ function checkClickedCard (event) {
   //count the number of clicks on unopened cards
   increaseNrOfMoves();
 
+  // refresh the number of stars based on the current number of moves
+  refreshNrOfStars();
+  
   showCard(clickedCard);
   if (activeCards.length === 0) { // if there is no other unmatched active card
     activeCards.push(clickedCard);
