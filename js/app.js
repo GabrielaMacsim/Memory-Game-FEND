@@ -5,6 +5,7 @@
 
 const activeCards = [];
 const cards = document.querySelectorAll('.deck li');
+const restart = document.querySelector('.restart');
 var firstClick = true;
 var timeInterval = null;
 
@@ -113,6 +114,7 @@ function redrawStars() {
     star.classList.replace("fa-star-o", "fa-star");
   }
 }
+
 /*
  * Check if the clicked card matches an other card
 */
@@ -142,7 +144,7 @@ function checkClickedCard (event) {
 
   // refresh the number of stars based on the current number of moves
   refreshNrOfStars();
-  
+
   showCard(clickedCard);
   if (activeCards.length === 0) { // if there is no other unmatched active card
     activeCards.push(clickedCard);
