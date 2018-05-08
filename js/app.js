@@ -6,6 +6,7 @@
 const activeCards = [];
 const cards = document.querySelectorAll('.deck li');
 var firstClick = true;
+var timeInterval = null;
 
 /*
  * A list that holds all cards
@@ -44,6 +45,34 @@ function isAlreadyMatched(card) {
 }
 
 /*
+ * Timer for game
+*/
+
+function refreshTime(elapsedSeconds) {
+  let minutes = Math.floor(elapsedSeconds/60);
+  let seconds = elapsedSeconds % 60;
+
+  let prefixedMinutes = minutes < 10 ? "0" + minutes : minutes;
+  let prefixedSeconds = seconds < 10 ? "0" + seconds : seconds;
+
+  $(".timer").text(prefixedMinutes + ":" + prefixedSeconds);
+}
+
+function startTimer() {
+  let nrOfSeconds = 0;
+  let firstClickDate = new Date();
+      timeInterval = setInterval(function() {
+         nrOfSeconds = nrOfSeconds + 1;
+         refreshTime(nrOfSeconds);
+      }, 1000);
+}
+
+function resetTimer() {
+    clearInterval(timeInterval);
+    $(".timer").text("00:00");
+}
+
+/*
  * Check if the clicked card matches an other card
 */
 
@@ -60,6 +89,8 @@ function checkClickedCard (event) {
   if (firstClick) {
     // we're in the first click, so set this to false
     firstClick = false;
+    //Start timer
+    startTimer();
   }
   // if card is already matched, do nothing
   if  (isAlreadyMatched (clickedCard)) {
