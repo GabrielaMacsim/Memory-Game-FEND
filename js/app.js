@@ -98,7 +98,7 @@ function checkClickedCard (event) {
   }
 
   showCard(clickedCard);
-  if ( activeCards.length === 0 ) { // if there is no other unmatched active card
+  if (activeCards.length === 0) { // if there is no other unmatched active card
     activeCards.push(clickedCard);
   } else { // if there is one unmatched active card
     otherActiveCard = activeCards.pop();
@@ -113,7 +113,7 @@ function checkClickedCard (event) {
   }
 }
 
-for ( let i = 0; i < cards.length; i++) {
+for (let i = 0; i < cards.length; i++) {
   let card = cards[i];
   card.addEventListener('click', checkClickedCard);
 }

@@ -28,6 +28,11 @@ body {
     flex-direction: column;
 }
 
+.container1 {
+    display: flex;
+    justify-content: space-around;
+}
+
 h1 {
     font-family: 'Aclonica', sans-serif;
     font-weight: 300;
