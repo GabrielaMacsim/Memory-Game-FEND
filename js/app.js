@@ -167,6 +167,39 @@ for (let i = 0; i < cards.length; i++) {
 }
 
 /*
+ * Function for reseting all functions of the game: counter, timer, stars, shuffling
+*/
+
+function restartAll () {
+  resetNrOfMoves();
+  resetTimer();
+  redrawStars();
+
+  firstClick = true;
+
+  shuffle (arrayOfImages);
+
+  for (let i = 0; i < cards.length; i++) {
+    let card = cards[i];
+
+    // hide card
+    card.classList.remove('open', 'show', 'match');
+
+    // get <i> element of card which has the class with the image
+    let cardImage = card.children[0];
+
+    // get the current image class of the <i> element
+    let oldClass = cardImage.classList[1];
+
+    // replace the <i>'s image class with the new shuffled image class
+    // from the shuffled arrayOfImages
+    cardImage.classList.replace(oldClass, arrayOfImages[i]);
+   }
+}
+
+restart.addEventListener('click', restartAll); // Event listener for the restart button that triggers the restarAll function
+
+/*
  * Function that triggers the modal once all 16 cards have been matched
 */
 
