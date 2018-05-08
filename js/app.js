@@ -7,8 +7,8 @@ const cards = document.querySelectorAll('.deck li');
 const restart = document.querySelector('.restart');
 const allMatchedCards = document.getElementsByClassName('card match open show');
 const activeCards = [];
-var firstClick = true;
-var timeInterval = null;
+let firstClick = true;
+let timeInterval = null;
 
 /*
  * A list that holds all cards
@@ -99,12 +99,10 @@ function resetNrOfMoves() {
 function refreshNrOfStars() {
   let currentNumber = getCurrentNrOfMoves();
   starsList = $("ul.item1.stars > li > i");
-  if (currentNumber == 18) {
+  if (currentNumber == 20) {
       starsList[2].classList.replace("fa-star", "fa-star-o");
-    } else if (currentNumber == 30)  {
+    } else if (currentNumber == 40)  {
         starsList[1].classList.replace("fa-star", "fa-star-o");
-    } else if (currentNumber == 42)  {
-        starsList[0].classList.replace("fa-star", "fa-star-o");
     }
 }
 
@@ -236,7 +234,7 @@ function matchCards(cardA, cardB) {
       $('#modal-moves').text("Number of moves: " + nrOfMoves);
       $('#modal-stars').text("Star rating: " + starRating);
       clearInterval(timeInterval);
-    }, 1000)
+    }, 1000);
   }
 }
 
@@ -250,6 +248,6 @@ function hideCards(cardA, cardB) {
   setTimeout(function() {
     cardA.classList.remove('open', 'show', 'wrong');
     cardB.classList.remove('open', 'show', 'wrong');
-  }, 700)
+  }, 700);
 
 }
