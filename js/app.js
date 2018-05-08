@@ -199,6 +199,8 @@ function restartAll () {
 
 restart.addEventListener('click', restartAll); // Event listener for the restart button that triggers the restarAll function
 
+window.onload = restartAll; // All functions to be reset when the page starts
+
 /*
  * Function that triggers the modal once all 16 cards have been matched
 */
