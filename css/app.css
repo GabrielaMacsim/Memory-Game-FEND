@@ -100,6 +100,11 @@ header {
   cursor: default;
   background: #f88379;
   font-size: 33px;
+  transform: rotateY(360deg);
+  transition: 0.3s;
+  animation-name: no-match;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
 }
 
 /*
@@ -137,4 +142,19 @@ header {
   100% {
 
   }
+}
+
+@keyframes no-match {
+  0% {
+    transform: rotateY(360deg);
+  }
+
+  50% {
+      transform: rotateY(180deg);
+  }
+
+  100% {
+   transform: scale(-1, -1);
+  }
+
 }
