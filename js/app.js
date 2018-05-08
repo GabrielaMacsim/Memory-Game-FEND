@@ -86,3 +86,17 @@ for ( let i = 0; i < cards.length; i++) {
   let card = cards[i];
   card.addEventListener('click', checkClickedCard);
 }
+
+/*
+ * Function that gives the clicked unmatched cards the class of wrong that changes them to red
+*/
+function hideCards(cardA, cardB) {
+  cardA.classList.add('wrong');
+  cardB.classList.add('wrong');
+
+  setTimeout(function() {
+    cardA.classList.remove('open', 'show', 'wrong');
+    cardB.classList.remove('open', 'show', 'wrong');
+  }, 700)
+
+}
