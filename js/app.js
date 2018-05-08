@@ -88,6 +88,15 @@ for ( let i = 0; i < cards.length; i++) {
 }
 
 /*
+ * Function that triggers the modal once all 16 cards have been matched
+*/
+
+function matchCards(cardA, cardB) {
+  cardA.classList.add('match');
+  cardB.classList.add('match');
+}
+
+/*
  * Function that gives the clicked unmatched cards the class of wrong that changes them to red
 */
 function hideCards(cardA, cardB) {
