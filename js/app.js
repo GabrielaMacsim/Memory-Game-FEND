@@ -203,6 +203,22 @@ restart.addEventListener('click', restartAll); // Event listener for the restart
 window.onload = restartAll; // All funtions to be reset when the page starts
 
 /*
+ * Function that counts the remaining stars at the end of the game
+*/
+
+function getStarRating() {
+  let starList = $("ul.item1.stars > li > i");
+  let nrOfFullStars = 0;
+  for (let i = 0; i < starList.length; i++) {
+    curStar = starList[i];
+    if (curStar.classList.contains("fa-star")) {
+      nrOfFullStars++;
+    }
+  }
+  return nrOfFullStars;
+}
+
+/*
  * Function that triggers the modal once all 16 cards have been matched
 */
 
@@ -213,9 +229,12 @@ function matchCards(cardA, cardB) {
     setTimeout(function() {
       let timeSpent = $(".timer").text();
       let nrOfMoves = $(".moves").text();
+      let starRating = getStarRating();
+
       $('#myModal').modal('show');
       $('#modal-time').text("Time elapsed: " + timeSpent);
       $('#modal-moves').text("Number of moves: " + nrOfMoves);
+      $('#modal-stars').text("Star rating: " + starRating);
       clearInterval(timeInterval);
     }, 1000)
   }
