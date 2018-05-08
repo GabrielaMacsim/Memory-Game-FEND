@@ -91,6 +91,9 @@ header {
     cursor: default;
     background: #02ccba;
     font-size: 33px;
+    animation-duration: 1s;
+    animation-name: good-match;
+    animation-iteration-count: 1;
 }
 
 .deck .card.wrong {
@@ -124,4 +127,14 @@ header {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+}
+
+@keyframes good-match {
+  0% {
+    transform: scale(0.5, 0.5);
+  }
+
+  100% {
+
+  }
 }
