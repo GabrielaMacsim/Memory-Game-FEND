@@ -4,6 +4,7 @@
  */
 
 const activeCards = [];
+const allMatchedCards = document.getElementsByClassName('card match open show');
 const cards = document.querySelectorAll('.deck li');
 const restart = document.querySelector('.restart');
 var firstClick = true;
