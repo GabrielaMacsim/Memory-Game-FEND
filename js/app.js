@@ -3,10 +3,10 @@
  * Variables
  */
 
-const activeCards = [];
-const allMatchedCards = document.getElementsByClassName('card match open show');
 const cards = document.querySelectorAll('.deck li');
 const restart = document.querySelector('.restart');
+const allMatchedCards = document.getElementsByClassName('card match open show');
+const activeCards = [];
 var firstClick = true;
 var timeInterval = null;
 
@@ -17,22 +17,22 @@ var timeInterval = null;
 var arrayOfImages = ['fa-tree', 'fa-hand-spock-o', 'fa-paw', 'fa-sun-o', 'fa-moon-o', 'fa-paw', 'fa-leaf', 'fa-bicycle', 'fa-tree', 'fa-pagelines', 'fa-leaf','fa-pagelines', 'fa-sun-o', 'fa-bicycle', 'fa-hand-spock-o', 'fa-moon-o'];
 
 /*
- * The shuffle function from http://stackoverflow.com/a/2450976
- */
+ * The shuffle function
+*/
 
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+function shuffle (array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
 
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
 
     return array;
-}
+  }
 
 /*
  * Display the cards on the page
@@ -117,7 +117,7 @@ function redrawStars() {
 }
 
 /*
- * Check if the clicked card matches an other card
+ * Check if the clicked card matches an other card and start timer and counter
 */
 
 function checkClickedCard (event) {
@@ -140,14 +140,14 @@ function checkClickedCard (event) {
   if  (isAlreadyMatched (clickedCard)) {
     return;
   }
-  //count the number of clicks on unopened cards
+ //count the number of clicks on unopened cards
   increaseNrOfMoves();
 
   // refresh the number of stars based on the current number of moves
   refreshNrOfStars();
 
   showCard(clickedCard);
-  if (activeCards.length === 0) { // if there is no other unmatched active card
+  if ( activeCards.length === 0 ) { // if there is no other unmatched active card
     activeCards.push(clickedCard);
   } else { // if there is one unmatched active card
     otherActiveCard = activeCards.pop();
@@ -162,7 +162,7 @@ function checkClickedCard (event) {
   }
 }
 
-for (let i = 0; i < cards.length; i++) {
+for ( let i = 0; i < cards.length; i++) {
   let card = cards[i];
   card.addEventListener('click', checkClickedCard);
 }
@@ -200,7 +200,7 @@ function restartAll () {
 
 restart.addEventListener('click', restartAll); // Event listener for the restart button that triggers the restarAll function
 
-window.onload = restartAll; // All functions to be reset when the page starts
+window.onload = restartAll; // All funtions to be reset when the page starts
 
 /*
  * Function that triggers the modal once all 16 cards have been matched
@@ -210,21 +210,20 @@ function matchCards(cardA, cardB) {
   cardA.classList.add('match');
   cardB.classList.add('match');
   if (allMatchedCards.length == 16) {
-  setTimeout(function() {
-    let timeSpent = $(".timer").text();
-    let nrOfMoves = $(".moves").text();
-    $('#myModal').modal('show');
-    $('#modal-time').text("Time elapsed: " + timeSpent);
-    $('#modal-moves').text("Number of moves: " + nrOfMoves);
-    clearInterval(timeInterval);
-  }, 1000)
- }
+    setTimeout(function() {
+      let timeSpent = $(".timer").text();
+      let nrOfMoves = $(".moves").text();
+      $('#myModal').modal('show');
+      $('#modal-time').text("Time elapsed: " + timeSpent);
+      $('#modal-moves').text("Number of moves: " + nrOfMoves);
+      clearInterval(timeInterval);
+    }, 1000)
+  }
 }
 
 /*
  * Function that gives the clicked unmatched cards the class of wrong that changes them to red
 */
-
 function hideCards(cardA, cardB) {
   cardA.classList.add('wrong');
   cardB.classList.add('wrong');
